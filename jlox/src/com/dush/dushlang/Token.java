@@ -1,4 +1,4 @@
-package com.dush.jlox;
+package com.dush.dushlang;
 
 class Token{
     final TokenType type;

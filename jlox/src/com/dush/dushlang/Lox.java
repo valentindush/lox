@@ -1,4 +1,4 @@
-package com.dush.jlox;
+package com.dush.dushlang;
 
 import java.io.BufferedReader;
 import java.io.IOException;
