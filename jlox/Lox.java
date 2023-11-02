@@ -23,6 +23,8 @@ public class Lox{
         }
     }
 
+    static boolean hadError = false;
+
     private static void runFile(String path) throws IOException{
         byte[] bytes = Files.readAllBytes(Paths.get(path));
         run(new String(bytes, Charset.defaultCharset()));
@@ -38,6 +40,7 @@ public class Lox{
 
             if(line == null) break;
             run(line);
+            hadError = false;
         }
     }
 
@@ -49,5 +52,20 @@ public class Lox{
         for(Token token : tokens){
             System.out.println(token);
         }
+
+        if(hadError) System.exit(65)
     }
+
+    static void error(int line, String message){
+        report(line, "", message)
+    }
+
+    private static void report(omt line, String where, String ,message){
+        System.err.println(
+            "[line "+ line + "] Error" + where + ": " + message);
+        hadError = true
+    }
+
+
+
 }
