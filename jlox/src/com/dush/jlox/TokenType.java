@@ -1,4 +1,4 @@
-package com.dush.jlox
+package com.dush.jlox;
 
 enum TokenType{
     //single character tokens
@@ -8,14 +8,14 @@ enum TokenType{
     //one or two character tokens
     BANG, BANG_EQUAL,
     EQUAL, EQUAL_EQUAL,
-    LESS, LESS_EQUAL,
+    LESS, LESS_EQUAL, GREATER, GREATER_EQUAL,
 
     //literals
     IDENTIFIER, STRING, NUMBER,
 
     //keywords
     AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR,
-    PRINT, RETURN, SUPER, THIS, TRUE, VAR,WHOLE,
+    PRINT, RETURN, SUPER, THIS, TRUE, VAR,WHILE,
 
     EOF
 }

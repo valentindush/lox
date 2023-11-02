@@ -1,17 +1,17 @@
-package com.dush.jlox
+package com.dush.jlox;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.nio.files.Files;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
 public class Lox{
     public static void main(String[] args) throws IOException{
         if(args.length > 1){
-            System.out.println('Usage: jlox [script]');
+            System.out.println("Usage: jlox [script]");
             System.exit(64);
 
         }else if(args.length == 1){
@@ -46,26 +46,22 @@ public class Lox{
 
     private static void run(String source){
         Scanner scanner = new Scanner(source);
-
-        List<Token> tokens = Scanner.scanTokens();
+        List<Token> tokens = scanner.scanTokens();
 
         for(Token token : tokens){
             System.out.println(token);
         }
 
-        if(hadError) System.exit(65)
+        if(hadError) System.exit(65);
     }
 
     static void error(int line, String message){
-        report(line, "", message)
+        report(line, "", message);
     }
 
-    private static void report(omt line, String where, String ,message){
+    private static void report(int line, String where, String message){
         System.err.println(
             "[line "+ line + "] Error" + where + ": " + message);
-        hadError = true
+        hadError = true;
     }
-
-
-
 }

@@ -1,11 +1,13 @@
-package com.dush.jlox
+package com.dush.jlox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Scanner {
+import static com.dush.jlox.TokenType.*;
+
+public class Scanner {
     private final String source;
     private final List<Token> tokens = new ArrayList<>();
     private int start = 0;
@@ -49,7 +51,7 @@ class Scanner {
             scanToken();
         }
 
-        tokens.add(new Token(EOF "", null, line));
+        tokens.add(new Token(EOF, "", null, line));
         return tokens;
     }
 
@@ -105,7 +107,7 @@ class Scanner {
                     }
 
                     if (nestingLevel > 0) {
-                        Lox.error(line, "Bad comment :lol")
+                        Lox.error(line, "Bad comment :lol");
                     }
                 }else{
                     addToken(SLASH);
@@ -130,7 +132,7 @@ class Scanner {
                     number();
 
                 }else if(isAlpha(c)){
-                    identifier()
+                    identifier();
                 }else{
                     Lox.error(line, "Unexpected token");
                 }
@@ -140,8 +142,10 @@ class Scanner {
 
     private void identifier(){
         while(isAlphaNumeric(peek())) advance();
+
+        String text = source.substring(start, current);
         TokenType type = keywords.get(text);
-        if(type == null) type == IDENTIFIER;
+        if(type == null) type = IDENTIFIER;
 
         addToken(type);
     }
@@ -200,7 +204,7 @@ class Scanner {
 
     private char peekNext(){
         if(current + 1 >= source.length()) return '\0';
-        return source.charAt(current + 1)
+        return source.charAt(current + 1);
     }
 
     private boolean match(char expected){
