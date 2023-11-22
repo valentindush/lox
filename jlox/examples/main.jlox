@@ -1,0 +1,10 @@
+var a  = 10;
+var b = 10;
+
+var name = "10"
+
+//comment
+
+if(name = "10"){
+    var b = a + b;
+}
