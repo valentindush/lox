@@ -42,6 +42,9 @@ public class GenerateAst {
                 defineType(writer, baseName, className, fields);
             }
 
+            writer.println();
+            writer.println("    abstract <R> R accept(Visitor<R> visitor);");
+
             writer.println("}");
             writer.close();
         }
@@ -55,7 +58,6 @@ public class GenerateAst {
         }
 
         writer.println("    }");
-        writer.println();
     }
 
     private static void defineType(PrintWriter writer, String baseName, String className, String fields) {
@@ -72,7 +74,14 @@ public class GenerateAst {
         }
 
         writer.println("        }");
+
+        // Visitor pattern
+        
         writer.println();
+        writer.println("    @override");
+        writer.println("    <R> R accept(Visitor<R> visitor) {");
+        writer.println("        return visitor.visit" + className + baseName + "(this);");
+        writer.println("    }");
 
         // Fields
         for(String field : fieldList){
